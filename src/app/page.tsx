@@ -1,7 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CommandMenu } from "@/components/command-menu";
 import { Metadata } from "next";
 import { Section } from "@/components/ui/section";
 import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
@@ -14,6 +13,32 @@ export const metadata: Metadata = {
   description: RESUME_DATA.summary,
 };
 
+interface Projects {
+  projects: Array<Object>;
+}
+
+function RenderProjects({ projects }: Projects) {
+  if (!projects.length) return '';
+  return (
+    <Section className="print-force-new-page scroll-mb-16">
+      <h2 className="text-xl font-bold">Projects</h2>
+      <div className="-mx-3 grid grid-cols-1 gap-3 print:grid-cols-3 print:gap-2 md:grid-cols-2 lg:grid-cols-3">
+        {projects.map((project: any) => {
+          return (
+            <ProjectCard
+              key={project.title}
+              title={project.title}
+              description={project.description}
+              tags={project.techStack}
+              link={"link" in project ? project.link.href : undefined}
+            />
+          );
+        })}
+      </div>
+    </Section>
+  )
+}
+
 export default function Page() {
   return (
     <main className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-12 md:p-16">
@@ -24,7 +49,7 @@ export default function Page() {
             <p className="max-w-md text-pretty font-mono text-sm text-muted-foreground">
               {RESUME_DATA.about}
             </p>
-            <p className="max-w-md items-center text-pretty font-mono text-xs text-muted-foreground">
+            {/* <p className="max-w-md items-center text-pretty font-mono text-xs text-muted-foreground">
               <a
                 className="inline-flex gap-x-1.5 align-baseline leading-none hover:underline"
                 href={RESUME_DATA.locationLink}
@@ -33,7 +58,7 @@ export default function Page() {
                 <GlobeIcon className="size-3" />
                 {RESUME_DATA.location}
               </a>
-            </p>
+            </p> */}
             <div className="flex gap-x-1 pt-1 font-mono text-sm text-muted-foreground print:hidden">
               {RESUME_DATA.contact.email ? (
                 <Button
@@ -67,7 +92,7 @@ export default function Page() {
                   size="icon"
                   asChild
                 >
-                  <a href={social.url}>
+                  <a href={social.url} target={social.target}>
                     <social.icon className="size-4" />
                   </a>
                 </Button>
@@ -95,7 +120,7 @@ export default function Page() {
         <Section>
           <h2 className="text-xl font-bold">About</h2>
           <p className="text-pretty font-mono text-sm text-muted-foreground">
-            {RESUME_DATA.summary}
+            <span dangerouslySetInnerHTML={{ __html: RESUME_DATA.summary }}></span>
           </p>
         </Section>
         <Section>
@@ -122,8 +147,8 @@ export default function Page() {
                         ))}
                       </span>
                     </h3>
-                    <div className="text-sm tabular-nums text-gray-500">
-                      {work.start} - {work.end}
+                    <div className="text-xs tabular-nums text-gray-500">
+                      <span title={work.experiencePeriod}>{work.start} - {work.end}</span>
                     </div>
                   </div>
 
@@ -132,8 +157,15 @@ export default function Page() {
                   </h4>
                 </CardHeader>
                 <CardContent className="mt-2 text-xs">
-                  {work.description}
+                  <div dangerouslySetInnerHTML={{ __html: work.description }} />
                 </CardContent>
+                {
+                  work.techStack?.length ? (
+                    <CardContent className="mt-2 text-xs">
+                      Technologies: {work.techStack.join(', ')}
+                    </CardContent>
+                  ) : ''
+                }
               </Card>
             );
           })}
@@ -166,37 +198,8 @@ export default function Page() {
             })}
           </div>
         </Section>
-
-        <Section className="print-force-new-page scroll-mb-16">
-          <h2 className="text-xl font-bold">Projects</h2>
-          <div className="-mx-3 grid grid-cols-1 gap-3 print:grid-cols-3 print:gap-2 md:grid-cols-2 lg:grid-cols-3">
-            {RESUME_DATA.projects.map((project) => {
-              return (
-                <ProjectCard
-                  key={project.title}
-                  title={project.title}
-                  description={project.description}
-                  tags={project.techStack}
-                  link={"link" in project ? project.link.href : undefined}
-                />
-              );
-            })}
-          </div>
-        </Section>
+        <RenderProjects projects={RESUME_DATA.projects}></RenderProjects>
       </section>
-
-      <CommandMenu
-        links={[
-          {
-            url: RESUME_DATA.personalWebsiteUrl,
-            title: "Personal Website",
-          },
-          ...RESUME_DATA.contact.social.map((socialMediaLink) => ({
-            url: socialMediaLink.url,
-            title: socialMediaLink.name,
-          })),
-        ]}
-      />
     </main>
   );
 }
