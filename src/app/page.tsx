@@ -3,7 +3,7 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Metadata } from "next";
 import { Section } from "@/components/ui/section";
-import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
+import { GlobeIcon, MailIcon, PhoneIcon, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RESUME_DATA } from "@/data/resume-data";
 import { ProjectCard } from "@/components/project-card";
@@ -165,7 +165,7 @@ export default function Page() {
                     <CardContent className="mt-2 text-xs">
                       Technologies: {work.techStack.join(', ')}
                     </CardContent>
-                  ) : ''
+                  ) : null
                 }
               </Card>
             );

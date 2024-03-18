@@ -2,6 +2,7 @@
 //   AmbitLogo,
 // } from "@/images/logos";
 import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons";
+import { ExternalLinkIcon, ExternalLink, Link } from "lucide-react";
 
 export const RESUME_DATA = {
   name: "KLDV Prasad",
@@ -18,6 +19,7 @@ export const RESUME_DATA = {
   contact: {
     email: "prasadkodali786@gmail.com",
     tel: "+917330668308",
+    resumeLink: "https://drive.google.com/file/d/1EyjZfqZsGPHu8kyrl2JAM9B3X9JVtkXV/view?usp=sharing",
     social: [
       {
         name: "GitHub",
@@ -37,6 +39,12 @@ export const RESUME_DATA = {
         icon: XIcon,
         target: '_blank'
       },
+      {
+        name: "LinkToResume",
+        url: "https://drive.google.com/file/d/1EyjZfqZsGPHu8kyrl2JAM9B3X9JVtkXV/view?usp=sharing",
+        icon: Link,
+        target: '_blank',
+      }
     ],
   },
   education: [
