@@ -12,8 +12,18 @@ export const RESUME_DATA = {
   about:
     "Senior Software Engineer",
   summary:`
-  I'm a Software Engineer with over 5 years of experience developing, testing, and deploying scalable web applications. 
+  Senior Software Engineer with over 5 years of experience developing, testing, and deploying scalable web applications. 
   I have a penchant to learn and work with the latest technologies.`,
+  highlights: [
+    'Worked on JavaScript technologies like Node.js and Vue.js to develop Non-blocking I/O web apps.',
+    'Designed and implemented RESTful APIs for web applications.',
+    `Utilized Redis for caching and creating background jobs. Contributed to npm package named
+    red-bull responsible for monitoring the redis background jobs.`,
+    `Added internationalization (i18n) support to ensure a seamless experience for a global audience.`,
+    `Developed logic for building MongoDB and Atlas search queries for all application filter conditions.`,
+    `Developed logic for Generative AI Chatbot with retrieval-augmented generation (RAG) using
+    MongoDB Atlas Vector Search and OpenAI LLM models.`
+  ],
   avatarUrl: "https://avatars.githubusercontent.com/u/24998621",
   personalWebsiteUrl: "https://jarocki.me",
   contact: {
