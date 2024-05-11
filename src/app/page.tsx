@@ -160,13 +160,21 @@ export default function Page() {
                 <CardContent className="mt-2 text-xs">
                   <div dangerouslySetInnerHTML={{ __html: work.description }} />
                 </CardContent>
-                {
-                  work.techStack?.length ? (
-                    <CardContent className="mt-2 text-xs">
-                      Technologies: {work.techStack.join(', ')}
-                    </CardContent>
-                  ) : null
-                }
+                {work.techStack?.length ? (
+                  <CardContent className="mt-auto flex">
+                    <div className="mt-2 flex flex-wrap gap-1">
+                      {work.techStack.map((tag) => (
+                        <Badge
+                          className="px-1 py-0 text-[10px]"
+                          variant="secondary"
+                          key={tag}
+                        >
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                ) : null}
               </Card>
             );
           })}
