@@ -87,7 +87,7 @@ export const RESUME_DATA = {
       end: "2024",
       experiencePeriod: "December, 2019 - Current",
       description: `
-      I'm working as a Fullstack Developer for a HRM tool, I utilized Node.js, Loopback and Vue.js to develop core features and REST APIs. 
+      I'm working as a Fullstack Developer for an HRM tool, I utilized Node.js, Loopback and Vue.js to develop core features and REST APIs. 
       My contributions included Generative AI chatbot, i18n translations, MongoDB and MongoDB Atlas search support for filters, workflows, redis background jobs, data export, and localized date formatting. 
       I also enhanced existing features, fixed bugs, and ensured code quality through unit testing with Jest and e2e testing with Ghost Inspector.
       `,
